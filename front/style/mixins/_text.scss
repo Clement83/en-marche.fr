@@ -508,12 +508,11 @@ $text--size-extra-large: 48px;
 
     &__links--nav {
         li {
-            font-size: $text--size-default;
+            font-size: 15px;
             letter-spacing: 0;
-            margin-top: 5px;
 
             a {
-                color: $dark;
+                color: $gray--dark;
             }
 
             h1 {

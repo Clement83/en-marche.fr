@@ -1,4 +1,4 @@
-<nav class="gtm__navigation__desktop l__wrapper l__row l__row--h-stretch l__hide--on-small-laptop space--5-0">
+<nav class="gtm__navigation__desktop l__wrapper l__row l__row--h-stretch l__hide--on-small-laptop {{ app.user ? 'b__nudge--top-5' : 'space--20-0' }}">
     <ul class="list__links list__links--row list__links--no-decor list__links--nav">
         {% if app.user %}
         <li>
@@ -30,12 +30,9 @@
                 <a href="{{ path('app_membership_register') }}">Devenir adhérent(e)</a>
             </li>
         {% endif %}
-        {% if not app.user %}
-            <li class="text--medium-small">
-                <a href="{{ path('donation_index') }}">Donner</a>
-            </li>
-        {% endif %}
-
+        <li>
+            <a href="{{ path('donation_index') }}">Donner</a>
+        </li>
         <li {% if not algolia_app_id or not algolia_api_key %}style="display: none;"{% endif %}>
             <a href="javascript:void(0)" class="je-cherche">
                 {{ include('components/search.html.twig') }}
@@ -51,8 +48,9 @@
                     </a>
                 {% else %}
                     {% if app.user %}
-                        <a href="{{ is_granted('ROLE_ADHERENT') ? path('app_user_profile') }}" class="icon--with-text text--medium-small nav__user__name">
+                        <a href="{{ is_granted('ROLE_ADHERENT') ? path('app_user_profile') }}" class="icon--with-text nav__user__name">
                             {{ include('components/user.html.twig') }}
+                            {{ app.user.firstName }}
                         </a>
                     {% endif %}
                     {% if is_granted('ROLE_USER') %}
@@ -86,7 +84,7 @@
                                     <a href="{{ path('app_create_citizen_initiative') }}">Créer une initiative</a>
                                 </li>
                                 {% if is_granted('CREATE_CITIZEN_PROJECT') %}
-                                    <li class="text--small">
+                                    <li>
                                         <a href="{{ path('app_adherent_create_citizen_project') }}">Créer un projet citoyen</a>
                                     </li>
                                 {% endif %}
@@ -130,8 +128,13 @@
                     {% endif %}
                 {% endif %}
             </div>
+            {% if app.user %}
+                <a class="btn" href="{{ path('app_adherent_create_citizen_project') }}">
+                    Lancer mon projet
+                </a>
+            {% endif %}
             {% if (not app.user) %}
-                <a href="{{ path('app_user_login') }}" class="btn">Connexion</a>
+                <a href="{{ path('app_user_login') }}" class="link--no-decor b__nudge--right">Connexion</a>
                 <a href="{{ path('app_membership_register') }}" class="btn">Inscription</a>
             {% endif %}
             {% if app.user %}

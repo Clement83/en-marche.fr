@@ -58,16 +58,17 @@
     &__user {
         position: relative;
         font-family: $font-roboto;
+        margin-right: 15px;
 
         &__caret {
             display: none;
             position: absolute;
             overflow: hidden;
             float: left;
-            top: 51px;
-            left: 5px;
+            top: 45px;
+            left: 3px;
             width: 18px;
-            height: 15px;
+            height: 10px;
             z-index: $zIndex__overlay-caret;
 
             span {
@@ -100,6 +101,8 @@
 
         &__name {
             padding: 20px 0;
+            font-size: 15px;
+            color: $gray--dark;
 
             &:hover circle,
             &:hover path {
@@ -114,8 +117,8 @@
             position: absolute;
             background: white;
             width: 255px;
-            top: 65px;
-            left: -115px;
+            top: 55px;
+            left: -117px;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
             z-index: $zIndex__overlay-menu;
             box-sizing: border-box;
